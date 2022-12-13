@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>Test</title>
+		<script type = "text/javascript">
+		function shareVal() {
+			console.log("Platform:"+navigator.platform);
+			if(navigator.canShare) {
+				if (navigator.share) {
+				  navigator.share({
+					title: 'web.dev',
+					text: 'Check out web.dev.',
+					url: 'https://web.dev/',
+				  })
+					.then(() => console.log('Successful share'))
+					.catch((error) => console.log('Error sharing', error));
+				}
+			}
+			else {
+				console.log("Not supported")
+				e();
+			}
+			
+		}
+		
+		function e() {
+		  const t = new URL("https://twitter.com/share");
+		  t.searchParams.set("url", this.shareUrl); 
+		  window.open(t.toString());
+		}
+			
+		</script>
+	</head>
+	<body>
+		Test
+		<input type="button" onclick="shareVal()" value="Share" />
+	</body>
+</html>
